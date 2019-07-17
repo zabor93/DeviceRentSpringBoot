@@ -29,7 +29,7 @@ public class DevicerentbootApplication {
         category.setDescription("Wiertarki, szlifierki, młoty udarowe i inne elektronarzędzia");
 
         Customer customer = new Customer();
-        customer.setFirstName("Janek");
+        customer.setFirstName("Marcinek");
         customer.setLastName("Nowak");
         customer.setPesel("90908765123");
         customer.setIdNumber("ABC678123");
