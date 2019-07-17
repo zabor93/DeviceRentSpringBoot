@@ -15,7 +15,6 @@ public class Device {
     private String description;
     private Long quantity;
     private double price;
-    private Long categoryId;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
@@ -29,11 +28,11 @@ public class Device {
     private List<Customer> customers = new ArrayList<>();
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -71,14 +70,6 @@ public class Device {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public Category getCategory() {

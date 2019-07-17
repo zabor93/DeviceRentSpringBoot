@@ -10,7 +10,7 @@ public class Customer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
   @Column(name = "first_name")
   private String firstName;
   @Column(name = "last_name")
@@ -31,11 +31,11 @@ public class Customer {
     this.rentDevices = rentDevices;
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
