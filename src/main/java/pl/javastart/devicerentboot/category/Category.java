@@ -1,4 +1,6 @@
-package pl.javastart.devicerentboot.model;
+package pl.javastart.devicerentboot.category;
+
+import pl.javastart.devicerentboot.device.Device;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,7 +17,7 @@ public class Category {
   private String name;
   private String description;
 
-  @OneToMany(mappedBy = "category")
+  @OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
   private Set<Device> devices = new HashSet<>();
 
 

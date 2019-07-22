@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import pl.javastart.devicerentboot.controller.AppController;
+import pl.javastart.devicerentboot.app.AppController;
 
 import java.util.Scanner;
 

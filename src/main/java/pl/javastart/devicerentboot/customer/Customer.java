@@ -1,4 +1,6 @@
-package pl.javastart.devicerentboot.model;
+package pl.javastart.devicerentboot.customer;
+
+import pl.javastart.devicerentboot.device.Device;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class Customer {
   private String pesel;
   @Column(name = "id_number", length = 10)
   private String idNumber;
-  @ManyToMany(mappedBy = "customers")
+  @ManyToMany(mappedBy = "customers",fetch = FetchType.EAGER)
   private List<Device> rentDevices = new ArrayList<>();
 
 

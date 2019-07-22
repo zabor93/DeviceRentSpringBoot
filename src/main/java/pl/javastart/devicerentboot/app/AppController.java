@@ -1,12 +1,13 @@
-package pl.javastart.devicerentboot.controller;
+package pl.javastart.devicerentboot.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import pl.javastart.devicerentboot.model.Category;
-import pl.javastart.devicerentboot.model.Device;
-import pl.javastart.devicerentboot.repository.CategoryRepository;
-import pl.javastart.devicerentboot.repository.CustomerRepository;
-import pl.javastart.devicerentboot.repository.DeviceRepository;
+import pl.javastart.devicerentboot.category.Category;
+import pl.javastart.devicerentboot.customer.Customer;
+import pl.javastart.devicerentboot.device.Device;
+import pl.javastart.devicerentboot.category.CategoryRepository;
+import pl.javastart.devicerentboot.customer.CustomerRepository;
+import pl.javastart.devicerentboot.device.DeviceRepository;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -45,8 +46,6 @@ public class AppController {
         this.customerRepository = customerRepository;
         this.deviceRepository = deviceRepository;
     }
-
-
 
 
     public void mainLoop() {
@@ -93,6 +92,8 @@ public class AppController {
     }
 
     private void closeApp() {
+        System.out.println("Bye bye");
+        System.exit(0);
 
     }
 
@@ -101,32 +102,74 @@ public class AppController {
     }
 
     private void removeCategory() {
-
+        System.out.println("Podaj id kategori ktore chcesz usunac:");
+        Long id =scanner.nextLong();
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isPresent()) {
+            category.ifPresent(categoryRepository::delete);
+        }
+        else {
+            System.out.println("Nie ma takiej kategorii");
+        }
     }
 
     private void removeDevice() {
 
     }
 
-    private void rent() {
 
+    private void rent() {
+        System.out.println("Podaj id uzytkownika");
+        Long id = scanner.nextLong();
+        Optional<Customer> customer = customerRepository.findById(id);
+        System.out.println("Podaj id urzadzenia");
+        Long id2 = scanner.nextLong();
+        Optional<Device> device = deviceRepository.findById(id2);
+        if (device.isPresent() && customer.isPresent()) {
+            device.ifPresent(device1 -> {
+                if (device1.getQuantity() > device1.getCustomers().size()) {
+                    device1.addCustomer(customer.get());
+                } else {
+                    System.out.println("BRAK");
+                }
+            });
+        }
     }
 
     private void addCustomer() {
-
+        Customer customer = new Customer();
+        System.out.println("Podaj nazwe klienta");
+        customer.setFirstName(scanner.nextLine());
+        scanner.nextLine();
+        System.out.println("Podaj nazwisko klienta");
+        customer.setLastName(scanner.nextLine());
+        System.out.println("Podaj iD klienta:");
+        customer.setIdNumber(scanner.next());
+        System.out.println("Podaj pesel");
+        customer.setPesel(scanner.next());
+        customerRepository.save(customer);
     }
 
     private void addCategory() {
-
+        Category category = new Category();
+        System.out.println("Podaj nazwe kategori:");
+        category.setName(scanner.nextLine());
+        scanner.nextLine();
+        System.out.println("Podaj opis kategori:");
+        category.setDescription(scanner.nextLine());
+        categoryRepository.save(category);
     }
 
     @Transactional
     public void addDevice() {
-        Device device=new Device();
+        Device device = new Device();
         System.out.println("Podaj nazwe urządzenia");
-        device.setName(scanner.next());
+        String str1 = scanner.nextLine();
+        device.setName(str1);
+        scanner.nextLine();
         System.out.println("Podaj opis urządzenia");
-        device.setDescription(scanner.next());
+        String str2 = scanner.nextLine();
+        device.setDescription(str2);
         System.out.println("Podaj cene urządzenia");
         device.setPrice(scanner.nextDouble());
         System.out.println("Podaj ilość(sztuki) urządzenia");
@@ -136,7 +179,6 @@ public class AppController {
         Optional<Category> category = categoryRepository.findById(id);
         if (category.isPresent()) {
             category.ifPresent(device::setCategory);
-
         } else {
             System.out.println("Klient o danym id nie istnieje.");
             System.out.println(id);
@@ -165,7 +207,6 @@ public class AppController {
         System.out.println("7-Usun klienta");
         System.out.println("8-Koniec");
         System.out.println("Podaj ID opcji:");
-
     }
 
 

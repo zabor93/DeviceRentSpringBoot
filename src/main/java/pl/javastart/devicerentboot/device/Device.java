@@ -1,4 +1,7 @@
-package pl.javastart.devicerentboot.model;
+package pl.javastart.devicerentboot.device;
+
+import pl.javastart.devicerentboot.category.Category;
+import pl.javastart.devicerentboot.customer.Customer;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,11 +19,11 @@ public class Device {
     private Long quantity;
     private double price;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "device_customers",
             joinColumns = {@JoinColumn(name = "device_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")}
