@@ -2,20 +2,12 @@ package pl.javastart.devicerentboot.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import pl.javastart.devicerentboot.category.Category;
 import pl.javastart.devicerentboot.category.CategoryController;
-import pl.javastart.devicerentboot.customer.Customer;
 import pl.javastart.devicerentboot.customer.CustomerController;
-import pl.javastart.devicerentboot.device.Device;
-import pl.javastart.devicerentboot.category.CategoryRepository;
-import pl.javastart.devicerentboot.customer.CustomerRepository;
 import pl.javastart.devicerentboot.device.DeviceController;
-import pl.javastart.devicerentboot.device.DeviceRepository;
 import pl.javastart.devicerentboot.rent.RentController;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.Scanner;
 
 @Controller
@@ -109,7 +101,6 @@ public class AppController {
     private void closeApp() {
         System.out.println("Bye bye");
         System.exit(0);
-
     }
 
 
@@ -124,6 +115,5 @@ public class AppController {
         System.out.println("8-Koniec");
         System.out.println("Podaj ID opcji:");
     }
-
 
 }

@@ -1,22 +1,24 @@
 package pl.javastart.devicerentboot.customer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.javastart.devicerentboot.category.CategoryRepository;
 
 import java.util.Optional;
 import java.util.Scanner;
 
+@Service
 public class CustomerController {
 
     private CustomerRepository customerRepository;
     private Scanner scanner;
 
+    @Autowired
     public CustomerController(Scanner scanner, CustomerRepository customerRepository) {
         this.scanner = scanner;
         this.customerRepository = customerRepository;
     }
 
-    public CustomerController() {
-    }
 
     public CustomerRepository getCustomerRepository() {
         return customerRepository;
@@ -51,6 +53,7 @@ public class CustomerController {
 
 
     public void removeCustomer() {
+        System.out.println("Podaj ID klienta");
         Long id = scanner.nextLong();
         scanner.nextLine();
         Optional<Customer> customer = customerRepository.findById(id);

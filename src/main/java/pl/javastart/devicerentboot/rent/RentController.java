@@ -1,5 +1,6 @@
 package pl.javastart.devicerentboot.rent;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.javastart.devicerentboot.customer.Customer;
 import pl.javastart.devicerentboot.customer.CustomerRepository;
@@ -17,6 +18,7 @@ public class RentController {
     private DeviceRepository deviceRepository;
     private CustomerRepository customerRepository;
 
+    @Autowired
     public RentController(Scanner scanner, DeviceRepository deviceRepository, CustomerRepository customerRepository) {
         this.scanner = scanner;
         this.deviceRepository = deviceRepository;

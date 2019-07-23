@@ -1,6 +1,7 @@
 package pl.javastart.devicerentboot.device;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.javastart.devicerentboot.category.Category;
 import pl.javastart.devicerentboot.category.CategoryNotFoundException;
 import pl.javastart.devicerentboot.category.CategoryRepository;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.Scanner;
 
+@Service
 public class DeviceController {
 
     private Scanner scanner;
