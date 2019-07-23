@@ -95,4 +95,12 @@ public class Device {
         customers.add(customer);
         customer.getRentDevices().add(this);
     }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

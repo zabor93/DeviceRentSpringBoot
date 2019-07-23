@@ -9,6 +9,7 @@ public enum Options {
     REMOVE_DEVICE(5, "Usun urzadzenie"),
     REMOVE_CATEGORY(6, "Usun kategorie"),
     REMOVE_CUSTOMER(7, "Usun klienta"),
+    SEARCHDEVICE(8, "Wyszukaj produktow"),
     EXIT(8, "Zamknij aplikacjie");
 
     private int number;

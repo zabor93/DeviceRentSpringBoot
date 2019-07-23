@@ -31,7 +31,7 @@ public class AppController {
 
 
     public void mainLoop() {
-      Options options;
+        Options options;
 
         do {
             printOptions();
@@ -45,14 +45,14 @@ public class AppController {
     private Options readOption() {
         boolean correctOptionSelected = false;
         Options option = null;
-        while(!correctOptionSelected) {
+        while (!correctOptionSelected) {
             System.out.println("Podaj ID opcji:");
             int optionId = scanner.nextInt();
             scanner.nextLine();
             try {
                 option = Options.numberToCategory(optionId);
                 correctOptionSelected = true;
-            } catch(InvalidOptionException e) {
+            } catch (InvalidOptionException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -60,7 +60,7 @@ public class AppController {
     }
 
 
-    private void printOptions(){
+    private void printOptions() {
         System.out.println("Opcje");
         Arrays.stream(Options.values()).forEach(System.out::println);
     }
@@ -91,6 +91,9 @@ public class AppController {
                 break;
             case EXIT:
                 closeApp();
+                break;
+            case SEARCHDEVICE:
+                deviceController.searchDevice();
                 break;
             default:
                 System.out.println("Opcja niepoprawna");

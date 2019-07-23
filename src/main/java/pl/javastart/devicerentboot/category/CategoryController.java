@@ -2,21 +2,25 @@ package pl.javastart.devicerentboot.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.javastart.devicerentboot.tools.Utils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 @Service
-public class CategoryController {
+public class CategoryController  {
 
     private Scanner scanner;
     private CategoryRepository categoryRepository;
+    private Utils utils;
 
+    
     @Autowired
-    public CategoryController(Scanner scanner, CategoryRepository categoryRepository) {
+    public CategoryController(Scanner scanner, CategoryRepository categoryRepository, Utils utils) {
         this.scanner = scanner;
         this.categoryRepository = categoryRepository;
+        this.utils = utils;
     }
 
 
@@ -25,7 +29,7 @@ public class CategoryController {
         System.out.println("Podaj nazwe kategori:");
         String s = scanner.nextLine();
         boolean t = false;
-        t = checkUnique(s);
+        t = utils.checkUnique(s);
         if (t == true) {
             category.setName(scanner.nextLine());
             scanner.nextLine();
@@ -38,15 +42,7 @@ public class CategoryController {
         }
     }
 
-    private boolean checkUnique(String s) {
-        List<Category> categories = categoryRepository.findAll();
-        for (Category category : categories) {
-            if (category.getName().equalsIgnoreCase(s)) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 
 
     public void removeCategory() {
