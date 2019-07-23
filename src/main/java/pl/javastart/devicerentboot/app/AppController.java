@@ -106,17 +106,4 @@ public class AppController {
         System.exit(0);
     }
 
-
-    private void printMenu() {
-        System.out.println("1-Dodaj urządzenie");
-        System.out.println("2-Dodaj kategorię");
-        System.out.println("3-Dodaj klienta");
-        System.out.println("4-Wypozycz urzadzenie");
-        System.out.println("5-Usun urządzenie");
-        System.out.println("6-Usun kategorie");
-        System.out.println("7-Usun klienta");
-        System.out.println("8-Koniec");
-        System.out.println("Podaj ID opcji:");
-    }
-
 }
